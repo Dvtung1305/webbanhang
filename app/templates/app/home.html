@@ -1,0 +1,71 @@
+{% extends 'app/base.html' %} 
+
+{% load static %}
+<!--banner-->
+{% block banner-slide %}
+<div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="5000">
+      <img
+        src="{% static 'app/images/banner/b.jpg' %}"
+        class="d-block w-100"
+        alt="..."
+        height="400" />
+    </div>
+    <div class="carousel-item" data-bs-interval="5000">
+      <img
+        src="{% static 'app/images/banner/b2.jpg' %}"
+        class="d-block w-100"
+        alt="..."
+        height="400" />
+    </div>
+    <div class="carousel-item" data-bs-interval="5000">
+      <img
+        src="{% static 'app/images/banner/b3.jpg' %}"
+        class="d-block w-100"
+        alt="..."
+        height="400" />
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+{% endblock banner-slide %}
+
+<!--content-->
+{% block main-content %}
+<div class="row" style=" width:100%">
+  {% for product in products%}
+  <div class="col-lg-3 border" >
+    <img
+      class="thumbnail p-3" 
+      src="{{product.ImageURL}}"
+      alt="..." />
+
+    <div class="box-element product p-3 ">
+      <h6>
+        <strong>{{product.name}}</strong>
+      </h6>
+      <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">
+        Thêm 
+      </button>
+      <a class="btn btn-outline-success" href="#">Xem</a>
+      <h6 style="display: inline-block; float: right ">
+        <strong>{{product.price | floatformat:6  }}.VNĐ</strong>
+      </h6>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+</br>
+</br>
+</br>
+{% endblock main-content %}

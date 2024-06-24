@@ -1,0 +1,41 @@
+{% extends 'app/base.html' %} {% load static %}
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="" />
+  </head>
+  <body>
+
+    {% block register %}
+    <h5> Result search for {{searched}}</h5>
+    <div class="row" style=" width:100%">
+        {% for product in keys%}
+        <div class="col-lg-3 border" >
+          <img
+            class="thumbnail p-3" 
+            src="{{product.ImageURL}}"
+            alt="..." />
+      
+          <div class="box-element product p-3 ">
+            <h6>
+              <strong>{{product.name}}</strong>
+            </h6>
+            <button data-product={{product.id}} data-action="add" class="btn btn-outline-secondary add-btn update-cart">
+              Thêm 
+            </button>
+            <a class="btn btn-outline-success" href="#">Xem</a>
+            <h6 style="display: inline-block; float: right ">
+              <strong>{{product.price | floatformat:6  }}.VNĐ</strong>
+            </h6>
+          </div>
+        </div>
+        {% endfor %}
+      </div>        
+    {% endblock register %}
+  </body>
+</html>

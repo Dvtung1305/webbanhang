@@ -1,0 +1,99 @@
+{% extends 'app/base.html' %} {% load static %}
+
+<!--checkout-->
+{% block content_checkout %}
+<div class="row" style="width: 100%">
+  <div class="col-lg-6">
+    <div class="box-element1" id="form-wrapper">
+      <form id="form">
+        <div id="user-info">
+          <div class="form-field">
+            <input
+              required
+              class="form-control"
+              type="text"
+              name="name"
+              placeholder="Name.." />
+          </div>
+          <div class="form-field">
+            <input
+              required
+              class="form-control"
+              type="email"
+              name="email"
+              placeholder="Email.." />
+          </div>
+        </div>
+
+        <div id="shipping-info">
+          <hr />
+          <p>Thông tin khách hàng</p>
+          <hr />
+          <div class="form-field">
+            <input
+              class="form-control"
+              type="text"
+              name="address"
+              placeholder="đi chỉ.." />
+          </div>
+          <div class="form-field">
+            <input
+              class="form-control"
+              type="text"
+              name="city"
+              placeholder="Thành phố.." />
+          </div>
+          <div class="form-field">
+            <input
+              class="form-control"
+              type="text"
+              name="mobile"
+              placeholder="Số điện thoại.." />
+          </div>
+        </div>
+
+        <hr />
+        <input
+          id="form-button"
+          class="btn btn-success btn-block"
+          type="submit"
+          value="Continue" />
+      </form>
+    </div>
+
+    <br />
+    <div class="box-element1 hidden" id="payment-info">
+      <small>Paypal Options</small>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="box-element1">
+      <a class="btn btn-outline-dark" href="{% url 'cart' %}"
+        >&#x2190; Quay lại giỏ hàng</a
+      >
+
+      <h3 class="p-2">Đơn hàng</h3>
+      {% for item in items %}
+
+      <div class="cart-row">
+        <div style="flex: 2">
+          <img class="row-image" src="{{item.product.ImageURL}}" />
+        </div>
+        <div style="flex: 2"><h5>{{item.product.name}}</h5></div>
+        <div style="flex: 1">
+          <h5 class="ps-4">{{item.product.price | floatformat:6 }}.VNĐ</h5>
+        </div>
+        <div style="flex: 1"><h5 class="ps-4">{{item.quantity}}</h5></div>
+      </div>
+
+      {% endfor %}
+      <h5>Tổng số lượng: {{order.get_cart_items}}</h5>
+      <h5>Tổng giá tiền: {{order.get_cart_total | floatformat:6 }}.VNĐ</h5>
+    </div>
+    <br />
+    <br />
+    <br />
+  </div>
+</div>
+{% endblock content_checkout %}
